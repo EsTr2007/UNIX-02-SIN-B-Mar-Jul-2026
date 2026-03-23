@@ -9,3 +9,4 @@
 9: gpg --import su_llave_SY.asc (El nombre del archivo de como guarde la lleave de mi amigo)
 10: echo "hi guys i am Pum ec" > doc_no_cifrado.txt
 11: gpg --output doc_cifrado.txt --encrypt --recipient (Hash de mi amigo) doc_no_cifrado.txt
+12: gpg --decrypt SY_cifrado.txt
