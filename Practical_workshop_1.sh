@@ -13,3 +13,4 @@
 13: gpg --output doc_no_cifrado_firmado.txt --clearsign doc_no_cifrado.txt #Creates a digital signature wrapped around the original text. This proves the message came from you and hasn't been tampered with, but the text remains readable.
 14: ls #Lists the files in my current directory.
 15: cat doc_no_cifrado.txt #Displays the content of the file directly in your terminal 
+16: gpg --verify esteban_doc_no_cifrado_firmado.txt #Verifies the digital signature of the file to confirm its authenticity and ensure it hasn't been tampered with.
