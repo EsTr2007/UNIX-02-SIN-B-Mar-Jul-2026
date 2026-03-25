@@ -12,3 +12,4 @@
 12: gpg --decrypt SY_cifrado.txt
 13: gpg --output doc_no_cifrado_firmado.txt --clearsign doc_no_cifrado.txt
 14: ls
+15: cat doc_no_cifrado.txt
