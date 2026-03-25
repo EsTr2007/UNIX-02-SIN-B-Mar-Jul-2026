@@ -20,3 +20,4 @@
 20: gpg --output doc_no_cifrado_firmado_binario.txt --sign doc_no_cifrado.txt #Creates a compressed binary file that contains both the original content and your digital signature.
 21: gpg --output doc_no_cifrado_firmado_binario.txt --sign doc_no_cifrado.txt #creates a compressed binary file that contains both the original content and your digital signature.
 22: gpg --verify sandoc_no_cifrado_firmado_binario.txt #extracts the original data from the binary file and checks the digital signature to confirm who signed it and that it hasn't been changed.
+23: gpg --output firma_separada_doc_no_cifrado.sig --detach-sign doc_no_cifrado.txt #creates a "detached" signature file that contains only the digital signature of the document, leaving the original file completely untouched.
