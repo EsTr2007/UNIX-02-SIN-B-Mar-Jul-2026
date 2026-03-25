@@ -1,6 +1,6 @@
 1: uname -a #Displays detailed system information, including the kernel version and operating system architecture.
 2: which gpg #Locates the executable path of the GPG program to confirm it is installed and see where it lives.
-3: gpg --version
+3: gpg --version #Checks the version number and supported algorithms of GPG.
 4: gpg --full-generate-key
 5: gpg --list-keys
 6: gpg --armor --export estrujillo2007@gmail.com > mi_llave_publica.asc
