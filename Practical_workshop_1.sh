@@ -16,3 +16,4 @@
 16: gpg --verify esteban_doc_no_cifrado_firmado.txt #Verifies the digital signature of the file to confirm its authenticity and ensure it hasn't been tampered with.
 17: gpg --edit-key BF8A9258824D7DC2D83D51DBFEBDE2535840B779 #Opens an interactive menu to manage, edit, or sign the specific GPG key identified by that fingerprint.
 18: gpg> trust #This sub-command allows you to set the level of confidence you have in the key owner's ability to accurately validate other people's keys.
+19: gpg --sign-key BF8A9258824D7DC2D83D51DBFEBDE2535840B779 #Use your private key to digitally sign the specified public key, officially certifying that you have verified the owner's identity.
