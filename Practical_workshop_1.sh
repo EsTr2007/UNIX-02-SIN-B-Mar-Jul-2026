@@ -24,3 +24,4 @@
 24: gpg --verify safirma_separada_doc_no_cifrado.sig sadoc_no_cifrado.txt #verifies a "detached" signature by checking the signature file against the original document to ensure they match and haven't been altered.
 25: gpg --output doc_cifrado_y_firmado.txt --encrypt --sign --recipient (hash) doc_no_cifrado.txt #digitally signs the file and then encrypts it specifically for the person whose public key matches that hash, ensuring both authenticity and privacy.
 26: gpg --output doc_cifrado_y_firmado_descifrado_y_validado.txt  --decrypt sadoc_cifrado_y_firmado.txt #Use your private key to decrypt the file and automatically verifies the sender's digital signature, saving the result as a readable text file.
+27: cat doc_cifrado_y_firmado_descifrado_y_validado.txt #Displays the contents of the decrypted and verified text file directly in your terminal.
