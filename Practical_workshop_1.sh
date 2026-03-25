@@ -22,3 +22,4 @@
 22: gpg --verify sandoc_no_cifrado_firmado_binario.txt #extracts the original data from the binary file and checks the digital signature to confirm who signed it and that it hasn't been changed.
 23: gpg --output firma_separada_doc_no_cifrado.sig --detach-sign doc_no_cifrado.txt #creates a "detached" signature file that contains only the digital signature of the document, leaving the original file completely untouched.
 24: gpg --verify safirma_separada_doc_no_cifrado.sig sadoc_no_cifrado.txt #verifies a "detached" signature by checking the signature file against the original document to ensure they match and haven't been altered.
+25: gpg --output doc_cifrado_y_firmado.txt --encrypt --sign --recipient (hash) doc_no_cifrado.txt #digitally signs the file and then encrypts it specifically for the person whose public key matches that hash, ensuring both authenticity and privacy.
