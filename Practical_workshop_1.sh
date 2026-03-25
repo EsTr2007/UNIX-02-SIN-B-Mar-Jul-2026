@@ -9,7 +9,7 @@
 9: gpg --import su_llave_SY.asc (El nombre del archivo de como guarde la lleave de mi amigo) #Adds a friend's public key to my keyring so you can send them encrypted messages.
 10: echo "hi guys i am Pum ec" > doc_no_cifrado.txt #Creates a simple text file with the content you typed.
 11: gpg --output doc_cifrado.txt --encrypt --recipient (Hash de mi amigo) doc_no_cifrado.txt #Encrypts the file using the recipient's public key. Only the person with the matching private key can read it.
-12: gpg --decrypt SY_cifrado.txt #Decrypts a file sent to you. GPG will automatically use your private key (and ask for your passphrase) to reveal the content.
+12: gpg --decrypt SY_cifrado.txt #Decrypts a file sent to me. GPG will automatically use your private key (and ask for your passphrase) to reveal the content.
 13: gpg --output doc_no_cifrado_firmado.txt --clearsign doc_no_cifrado.txt
 14: ls
 15: cat doc_no_cifrado.txt
