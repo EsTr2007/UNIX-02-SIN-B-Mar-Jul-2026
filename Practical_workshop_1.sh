@@ -14,3 +14,4 @@
 14: ls #Lists the files in my current directory.
 15: cat doc_no_cifrado.txt #Displays the content of the file directly in your terminal 
 16: gpg --verify esteban_doc_no_cifrado_firmado.txt #Verifies the digital signature of the file to confirm its authenticity and ensure it hasn't been tampered with.
+17: gpg --edit-key BF8A9258824D7DC2D83D51DBFEBDE2535840B779 #Opens an interactive menu to manage, edit, or sign the specific GPG key identified by that fingerprint.
