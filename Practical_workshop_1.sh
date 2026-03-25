@@ -5,7 +5,7 @@
 5: gpg --list-keys #Lists all public keys currently stored in your "keyring."
 6: gpg --armor --export estrujillo2007@gmail.com > mi_llave_publica.asc #Exports your public key in a readable text format (ASCII armor) and saves it to a file so you can share it with others.
 7: gpg --list-secret-keys --keyid-format=long #Lists your private (secret) keys and displays their IDs in a detailed, long format.
-8: gpg --armor --export-secret-keys (2E2EAF7C82661FC2)
+8: gpg --armor --export-secret-keys (2E2EAF7C82661FC2) #Exports your private key.
 9: gpg --import su_llave_SY.asc (El nombre del archivo de como guarde la lleave de mi amigo)
 10: echo "hi guys i am Pum ec" > doc_no_cifrado.txt
 11: gpg --output doc_cifrado.txt --encrypt --recipient (Hash de mi amigo) doc_no_cifrado.txt
