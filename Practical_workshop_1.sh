@@ -11,5 +11,5 @@
 11: gpg --output doc_cifrado.txt --encrypt --recipient (Hash de mi amigo) doc_no_cifrado.txt #Encrypts the file using the recipient's public key. Only the person with the matching private key can read it.
 12: gpg --decrypt SY_cifrado.txt #Decrypts a file sent to me. GPG will automatically use your private key (and ask for your passphrase) to reveal the content.
 13: gpg --output doc_no_cifrado_firmado.txt --clearsign doc_no_cifrado.txt #Creates a digital signature wrapped around the original text. This proves the message came from you and hasn't been tampered with, but the text remains readable.
-14: ls
+14: ls #Lists the files in my current directory.
 15: cat doc_no_cifrado.txt
