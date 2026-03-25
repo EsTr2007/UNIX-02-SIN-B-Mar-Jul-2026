@@ -1,4 +1,4 @@
-1: uname -a
+1: uname -a #Displays detailed system information, including the kernel version and operating system architecture.
 2: which gpg
 3: gpg --version
 4: gpg --full-generate-key
