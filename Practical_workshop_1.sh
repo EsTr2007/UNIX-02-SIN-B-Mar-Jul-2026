@@ -3,7 +3,7 @@
 3: gpg --version #Checks the version number and supported algorithms of GPG.
 4: gpg --full-generate-key #Starts the interactive process to create a new key pair (public and private) with custom options like key type and expiration date.
 5: gpg --list-keys #Lists all public keys currently stored in your "keyring."
-6: gpg --armor --export estrujillo2007@gmail.com > mi_llave_publica.asc
+6: gpg --armor --export estrujillo2007@gmail.com > mi_llave_publica.asc #Exports your public key in a readable text format (ASCII armor) and saves it to a file so you can share it with others.
 7: gpg --list-secret-keys --keyid-format=long
 8: gpg --armor --export-secret-keys (2E2EAF7C82661FC2)
 9: gpg --import su_llave_SY.asc (El nombre del archivo de como guarde la lleave de mi amigo)
