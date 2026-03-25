@@ -2,7 +2,7 @@
 2: which gpg #Locates the executable path of the GPG program to confirm it is installed and see where it lives.
 3: gpg --version #Checks the version number and supported algorithms of GPG.
 4: gpg --full-generate-key #Starts the interactive process to create a new key pair (public and private) with custom options like key type and expiration date.
-5: gpg --list-keys
+5: gpg --list-keys #Lists all public keys currently stored in your "keyring."
 6: gpg --armor --export estrujillo2007@gmail.com > mi_llave_publica.asc
 7: gpg --list-secret-keys --keyid-format=long
 8: gpg --armor --export-secret-keys (2E2EAF7C82661FC2)
