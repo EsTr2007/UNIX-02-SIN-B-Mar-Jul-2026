@@ -18,3 +18,4 @@
 18: gpg> trust #This sub-command allows you to set the level of confidence you have in the key owner's ability to accurately validate other people's keys.
 19: gpg --sign-key BF8A9258824D7DC2D83D51DBFEBDE2535840B779 #Use your private key to digitally sign the specified public key, officially certifying that you have verified the owner's identity.
 20: gpg --output doc_no_cifrado_firmado_binario.txt --sign doc_no_cifrado.txt #Creates a compressed binary file that contains both the original content and your digital signature.
+21: gpg --output doc_no_cifrado_firmado_binario.txt --sign doc_no_cifrado.txt #creates a compressed binary file that contains both the original content and your digital signature.
