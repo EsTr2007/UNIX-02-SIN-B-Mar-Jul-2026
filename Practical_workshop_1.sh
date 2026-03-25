@@ -7,7 +7,7 @@
 7: gpg --list-secret-keys --keyid-format=long #Lists my private (secret) keys and displays their IDs in a detailed, long format.
 8: gpg --armor --export-secret-keys (2E2EAF7C82661FC2) #Exports my private key.
 9: gpg --import su_llave_SY.asc (El nombre del archivo de como guarde la lleave de mi amigo) #Adds a friend's public key to my keyring so you can send them encrypted messages.
-10: echo "hi guys i am Pum ec" > doc_no_cifrado.txt
+10: echo "hi guys i am Pum ec" > doc_no_cifrado.txt #Creates a simple text file with the content you typed.
 11: gpg --output doc_cifrado.txt --encrypt --recipient (Hash de mi amigo) doc_no_cifrado.txt
 12: gpg --decrypt SY_cifrado.txt
 13: gpg --output doc_no_cifrado_firmado.txt --clearsign doc_no_cifrado.txt
