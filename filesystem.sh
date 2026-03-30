@@ -7,3 +7,4 @@ ls -i #Show the files with they identificator
  stat test.txt #Give all tecnical dates of file
 sudo apt update # We use for update the list of available packages.
 sudo apt upgrade #We use for install available updates for the programs you already have.
+sudo apt install parted #We use for install the parted program on your system.
