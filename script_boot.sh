@@ -12,3 +12,13 @@ Stat . #shows all the detailed technical information of the directory where you 
 mkdir -p /tmp/prueba/sub1 /tmp/prueba/sub2 #Create directories hierarchically.
 stat /tmp/prueba #Displays detailed metadata for the root folder you just created
 man mkdir #Open the mkdir command user manual
+pwd #Show the actual directory
+whoami #Who am I?
+ls #It only shows you the names of files and folders in a simple list
+ls -l #Transforms the list into a detailed table
+ls -la #It shows absolutely everything, including hidden files
+la -lh #Instead of telling you that a file weighs 10485760 bytes, it will tell you that it weighs 10M. Convert sizes to KB, MB or GB automatically.
+la -lt #Sort files by modification date
+ls / #Lists the root directory of the system
+ls /etc|head -20 #It lists the files in the /etc folder, which is where all system settings are saved, but only shows you the first 20 items.
+ls /dev|head -20 #Lists the files in the /dev folder, where the operating system represents all connected hardware, showing only the first 20.
