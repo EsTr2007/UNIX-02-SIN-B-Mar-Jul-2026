@@ -9,3 +9,6 @@ total 8
 925546 drwxr-xr-x 2 root root 4096 Apr  6 12:37 .
 714616 drwxr-xr-x 1 root root 4096 Apr  6 12:37 ..
 Stat . #shows all the detailed technical information of the directory where you are currently standing.
+mkdir -p /tmp/prueba/sub1 /tmp/prueba/sub2 #Create directories hierarchically.
+stat /tmp/prueba #Displays detailed metadata for the root folder you just created
+man mkdir #Open the mkdir command user manual
