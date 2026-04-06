@@ -8,3 +8,4 @@ ls -lai # Instead of just looking at the file names, you ask the system to give 
 total 8
 925546 drwxr-xr-x 2 root root 4096 Apr  6 12:37 .
 714616 drwxr-xr-x 1 root root 4096 Apr  6 12:37 ..
+Stat . #shows all the detailed technical information of the directory where you are currently standing.
