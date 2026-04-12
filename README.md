@@ -29,3 +29,6 @@ Image of the project:
 
 # List the files arc/x86/boot/bzImage to check if the compiled kernel exists
 ls arch/x86/boot/bzImage
+
+# Create the directory /boot-files with superuser privileges
+sudo mkdir /boot-files
