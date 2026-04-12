@@ -86,3 +86,31 @@ cd ..
 # The second is find . | cpio -o -H newc > /boot-files/init.cpio which is used to execute the packaging correctly
 # The third is ls -l /boot-files/init.cpio to check if it already exists
 
+# It makes me the absolute "owner" of the system permanently during the session.
+sudo su
+
+# It is used to create an "empty" file that behaves as if it were a 50-megabyte physical hard drive.
+dd if=/dev/zero of=boot bs=1M count=50
+
+# It gives "order" to the 50MB file we created with dd. Without this step, the boot file is just a bunch of zeros; after this command, it becomes a structured disk where you can save files.
+mkfs -t fat boot
+
+# This converts the data file into a boot disk. Without this step, QEMU would attempt to read the disk but wouldn't know where to begin loading the system.
+syslinux boot
+
+# Prepare the "gateway" to be able to place files into the virtual disk. Without this folder, you wouldn't have anywhere to "attach" the 50MB file we created.
+mkdir m
+
+# Connect the virtual disk to the current file system. This is the step where the 50MB file ceases to be a closed file and becomes a folder you can access.
+mount boot m
+
+# Place the operating system components inside the virtual disk. This is the step where the kernel and initramfs are saved in the 50MB file you prepared.
+cp bzImage init.cpio m
+
+# Here we got the "No such file or directory" message again, so to fix it I had to do the following:
+# First I had to exit the folder I was in and navigate to the correct one using the command cd /boot-files
+# Second, I had to clean up the files I created incorrectly using the command rm -rf initramfs/m initramfs/boot
+# Third, I had to re-run the previous commands from /boot-files
+
+# Close the disk and make sure that everything you copy is actually saved.
+umount m
