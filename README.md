@@ -32,3 +32,8 @@ ls arch/x86/boot/bzImage
 
 # Create the directory /boot-files with superuser privileges
 sudo mkdir /boot-files
+
+# It is one of the most important steps in the guide because it is extracting the "heart" of the operating system you just compiled.
+sudo cp arch/x86/boot/bzImage /boot-files/
+
+# That command we moved from /boot-files/initramfs to the main /boot-files folder.
