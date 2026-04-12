@@ -37,3 +37,24 @@ sudo mkdir /boot-files
 sudo cp arch/x86/boot/bzImage /boot-files/
 
 # That command we moved from /boot-files/initramfs to the main /boot-files folder.
+cd ..
+
+# Download the tools you will use on your distro and after one places you inside the folder so you can start configuring them.
+git clone --depth 1 https://git.busybox.net/busybox
+cd busybox
+
+# Open the "user interface" to configure what features you want your software to have before you compile it.
+make menuconfig
+
+# The actual software construction begins. This is the step where the source code (text) is transformed into an executable binary.
+make -j 2
+
+# It showed errors related to tc, so the .config file was edited with the command "vim .config" 
+# The line CONFIG_TC=y was located, and to edit it, the letter "i" was typed and changed to CONFIG_TC=n, After run again make -j 2
+
+# Create the empty container where we will build the operating system before compressing it.
+sudo mkdir /boot-files/initramfs
+
+# Finally, it dumps the operating system files into the folder we created. This is the step where the folder structure, or skeleton, of our Linux system is built.
+sudo make CONFIG_PREFIX=/boot-files/initramfs install
+
