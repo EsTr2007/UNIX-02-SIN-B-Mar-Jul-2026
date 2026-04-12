@@ -114,3 +114,19 @@ cp bzImage init.cpio m
 
 # Close the disk and make sure that everything you copy is actually saved.
 umount m
+
+# It is the "turning on" of the virtual computer.
+qemu-system-x86_64 -nographic -append "console=ttyS0" \
+ -kernel bzImage -initrd init.cpio -drive file=boot,format=raw
+
+ # Now, to check if everything went well, we must run the following commands
+ ls = List all the files and folders in the directory you are in.
+ pwd = It tells you the exact path of the folder where you are currently located.
+ vi =  It is the standard text editor for creating or modifying files from the terminal.
+ # When I ran vi command, another terminal window opened that wouldn't let me do anything, so to solve that I had to
+ # Press the esc botton and when the cursor moves down type the command = q! to continue working
+ bc = A mathematical calculator that allows you to perform operations directly on the console.
+
+ # Now we need close the QEMU cleanly so we executed the following commands
+ Press Ctrl + A
+ After press X
