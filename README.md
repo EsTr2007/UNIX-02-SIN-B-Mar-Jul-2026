@@ -129,4 +129,22 @@ qemu-system-x86_64 -nographic -append "console=ttyS0" \
 
  # Now we need close the QEMU cleanly so we executed the following commands
  Press Ctrl + A
- After press X
+ After press X 
+
+ # Exercises from page 9
+
+ 1: In the codespace terminal, I get BIOS because codespace is a virtualized environment that does not expose the UEFI firmware to the container, 
+ operating by default in Legacy mode for greater compatibility and speed.
+ 1.1: In the QEMU terminal, I get BIOS because QEMU, by default, emulates a motherboard with Legacy BIOS firmware.
+
+2: The ls directory is missing.
+2.1: We are only shown the bin, dev, init, root, sbin, and usr directories. 
+2.2: This is thanks to the minimal file system, which only includes essential directories like those mentioned earlier. Many standard directories are missing because this system relies solely on BusyBox and a custom initramfs; it doesn't run a full Linux distribution. This demonstrates that a minimal Linux system can function with the fundamental components needed to boot and provide basic interaction.
+
+3: The main advantage is saving space and memory. By having a single binary that performs all tasks, you avoid code duplication and unnecessary metadata across hundreds of small files, which is vital on devices with very limited storage capacity.
+
+ 4: The real size is: 5 bytes
+    The space occupied by assigned blocks is: 4096 bytes (8 bloques de 512).
+    Is there internal fragmentation? Yes, there is a waste of 4091 bytes.
+
+5: A GPT disk is being used and the following filesystems are being used: ext4, fat32, loop
