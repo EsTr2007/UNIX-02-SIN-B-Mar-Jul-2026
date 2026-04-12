@@ -23,3 +23,9 @@ git clone --depth 1 https://github.com/torvalds/linux.git
 cd linux
 make menuconfig
 make -j 2
+
+
+Image of the project:
+
+# List the files arc/x86/boot/bzImage to check if the compiled kernel exists
+ls arch/x86/boot/bzImage
