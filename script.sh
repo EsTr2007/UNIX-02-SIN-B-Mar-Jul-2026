@@ -13,3 +13,8 @@ rmdir -- -rf #Deletes an empty folder named -rf
 ls --help #Displays quick help for the ls command (options and basic usage on screen)
 man ls q #Open the complete ls manual (more detailed, with extensive explanation of all options).
 --depth #Create a shallow clone with a history truncated to the specified number of commits
+chmod #[quien,operador,permiso] archivo
+chmod +x scrpt.sh #Anyone can run it (equivalent to a+x)
+chmod u+x script.sh #Only the owner can execute it
+chmod o-r secreto.txt #Remove reading from "others"
+chmod u+rw,go-rwx privado #The owner reads/writes, nobody else can do anything
