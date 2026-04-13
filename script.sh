@@ -10,3 +10,5 @@ rm -rf #Deletes files and folders recursively without asking for confirmation.
 rm -- rf #Try deleting a file named rf
 mkdir -- -rf #Create a folder called -rf
 rmdir -- -rf #Deletes an empty folder named -rf
+ls --help #Displays quick help for the ls command (options and basic usage on screen)
+man ls q #Open the complete ls manual (more detailed, with extensive explanation of all options).
