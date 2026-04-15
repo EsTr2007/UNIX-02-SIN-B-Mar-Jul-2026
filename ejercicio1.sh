@@ -7,3 +7,10 @@ ls -l hola.sh #List the file with details. At the beginning we will see somethin
 chmod +x hola.sh #It grants execution permission. This is the switch that turns a simple text file into a program that the system can run.
 ls -l hola.sh #Check again. You'll now see that the permissions have changed to something like -rwxr-xr-x, and in many terminals, the filename will change color to indicate that it's now executable.
 ./hola.sh #The script starts and we will see the message on the screen: "Hello from my first script".
+
+ls /etc #List all files and folders within /etc. This is the directory where almost all Linux system configurations are stored.
+touch /etc/prueba.txt #Try creating an empty file called test.txt in that configuration folder.
+#Is necesary use sudo
+mkdir ~/mi_carpeta #Create a new folder called my_folder in your home directory (the ~ represents /home/your_username). You have full permissions here.
+apt install cowsay #This is the command to install a program called cowsay (a cow that says things in the terminal). Like the second command, it will fail if you don't put `sudo` in front of it.
+#Is necesary use sudo
