@@ -20,3 +20,6 @@ chmod o-r secreto.txt #Remove reading from "others"
 chmod u+rw,go-rwx privado #The owner reads/writes, nobody else can do anything
 sudo echo "hola" > /etc/archivo_protegido #bash: /etc/archivo_protegido: Permission denied 
 #sudo only affect the command after this, no all the command
+echo "hola" | sudo tee /etc/archivo _protegido > /dev/null #echo execute as normal mode, the pipeline pass the outputto tee. sudo tee executes with privileges for. > /dev/nullmake that the message in the terminal  
+cat /etc/archivo _protegido #Read and display the contents of the file in the terminal to verify that it was written correctly.
+echo "hola" | sudo tee /etc/archivo _protegido #It does the same thing as the first command, but without muting it. The word "hello" will appear in the terminal right after you run it, and it will also be saved to the file.
