@@ -23,3 +23,5 @@ sudo echo "hola" > /etc/archivo_protegido #bash: /etc/archivo_protegido: Permiss
 echo "hola" | sudo tee /etc/archivo _protegido > /dev/null #echo execute as normal mode, the pipeline pass the outputto tee. sudo tee executes with privileges for. > /dev/nullmake that the message in the terminal  
 cat /etc/archivo _protegido #Read and display the contents of the file in the terminal to verify that it was written correctly.
 echo "hola" | sudo tee /etc/archivo _protegido #It does the same thing as the first command, but without muting it. The word "hello" will appear in the terminal right after you run it, and it will also be saved to the file.
+sudo sh -c 'echo' "chao" >> /etc/archivo_protegido #This command is the direct alternative to using tee. Essentially, you're wrapping the entire operation within a "sub-process" that has full permissions.
+cat /etc/archivo_protegido #Read and display the contents of the file in the terminal to verify that it was written correctly.
