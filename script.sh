@@ -18,3 +18,5 @@ chmod +x scrpt.sh #Anyone can run it (equivalent to a+x)
 chmod u+x script.sh #Only the owner can execute it
 chmod o-r secreto.txt #Remove reading from "others"
 chmod u+rw,go-rwx privado #The owner reads/writes, nobody else can do anything
+sudo echo "hola" > /etc/archivo_protegido #bash: /etc/archivo_protegido: Permission denied 
+#sudo only affect the command after this, no all the command
