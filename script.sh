@@ -25,3 +25,4 @@ cat /etc/archivo _protegido #Read and display the contents of the file in the te
 echo "hola" | sudo tee /etc/archivo _protegido #It does the same thing as the first command, but without muting it. The word "hello" will appear in the terminal right after you run it, and it will also be saved to the file.
 sudo sh -c 'echo' "chao" >> /etc/archivo_protegido #This command is the direct alternative to using tee. Essentially, you're wrapping the entire operation within a "sub-process" that has full permissions.
 cat /etc/archivo_protegido #Read and display the contents of the file in the terminal to verify that it was written correctly.
+sudo su - #This is the "absolute power" command. It is the most common way to persistently enter Superuser (root) mode.
