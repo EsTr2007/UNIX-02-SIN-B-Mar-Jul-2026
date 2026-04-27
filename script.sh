@@ -112,6 +112,16 @@ sudo useradd -m -s /usr/bin/zsh luna: #Creates user "luna" with a home directory
 sudo chown luna mi_archivo: #Changes the owner of the file to the user "luna".
 ls -l mi_archivo: #Shows detailed information (permissions, owner, size) of the file.
 
-groups:
-groupadd grupo_test:
-groups: 
+groups: #Lists the groups the current user belongs to.
+groupadd grupo_test: #Creates a new group named "grupo_test".
+groups: #Lists the groups the current user belongs to.
+sudo groupadd grupo_test: #Creates a new group named "grupo_test" with administrative privileges.
+touch comun: #Creates an empty file named "comun" 
+ls comun: #Lists the file "comun" to verify that it exists.
+usermod -a -G grupo_test luna: #Adds user "luna" to the group "grupo_test" without removing them from others.
+chgrp grupo_test comun: #Changes the group ownership of the file/folder "comun" to "grupo_test".
+ls -l comun: #Displays the detailed permissions and group owner of "comun".
+newgrp grupo_test: #Switches the user's current primary group to "grupo_test" for the current session.
+sudo su: #Switches the user to the root account (Superuser) to execute commands with full system access.
+sudo chown luna:grupo_test mi_archivo: #Changes both the owner (to "luna") and the group (to "grupo_test") of the file simultaneously.
+ls -l mi_archivo: #Displays the file's details to verify the new owner and group settings
