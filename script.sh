@@ -27,4 +27,79 @@ sudo sh -c 'echo' "chao" >> /etc/archivo_protegido #This command is the direct a
 cat /etc/archivo_protegido #Read and display the contents of the file in the terminal to verify that it was written correctly.
 sudo su - #This is the "absolute power" command. It is the most common way to persistently enter Superuser (root) mode.
 echo "$HOME" #Show the way, in this case is /home/codespace
-echo '$HOME' #Print as string so $HOME
+echo '$HOME' #Print as string so $HOME 
+
+umask: #Give us the level of permissions what we have on our codespace
+touch archivo1: #Create new files called archivo2
+mkdir directorio1: #These command create a new directory called directorio1
+ls -l: #Displays files in a detailed list format (permissions, owner, size, date)
+umask 027: #Change mask number 
+touch archivo2: #Create a new file called archivo2
+mkdir directorio2: #Create a new directory called directorio2
+ls -l: #Displays files in a detailed list format (permissions, owner, size, date)
+umask 077: #Change mask number 
+touch secreto.txt: #Create a new file called secreto.txt
+mkdir privado: #These command create a new directory called privado
+ls -l: #Displays files in a detailed list format (permissions, owner, size, date)
+sudo apt-get update: #Refreshes the local package list from repositories.
+sudo apt-get install acl: #Installs the access control list utility.
+sudo chown -R $(whoami): #Changes ownership of all files/folders to the current user.
+ sudo setfacl -bnR . : #Recursively removes all extended ACL entries in the current
+
+Result 1: 
+total 64
+-rw-rw-rw-  1 codespace root      34523 Apr 27 12:08 LICENSE
+-rw-rw-rw-  1 codespace root         70 Apr 27 12:08 README.md
+-rw-rw-rw-  1 codespace root          5 Apr 27 12:08 _protegido
+-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:32 archivo1
+drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:32 directorio1
+-rw-rw-rw-  1 codespace root       1713 Apr 27 12:08 ejercicio1.sh
+-rw-rw-rw-  1 codespace root        603 Apr 27 12:08 ejercicio2.sh
+-rw-rw-rw-  1 codespace root         45 Apr 27 12:08 hola.sh
+-rwxrwxrwx  1 codespace root       2522 Apr 27 12:31 script.sh
+
+Result 2:
+total 68
+-rw-rw-rw-  1 codespace root      34523 Apr 27 12:08 LICENSE
+-rw-rw-rw-  1 codespace root         70 Apr 27 12:08 README.md
+-rw-rw-rw-  1 codespace root          5 Apr 27 12:08 _protegido
+-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:32 archivo1
+-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:35 archivo2
+drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:32 directorio1
+drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:35 directorio2
+-rw-rw-rw-  1 codespace root       1713 Apr 27 12:08 ejercicio1.sh
+-rw-rw-rw-  1 codespace root        603 Apr 27 12:08 ejercicio2.sh
+-rw-rw-rw-  1 codespace root         45 Apr 27 12:08 hola.sh
+-rwxrwxrwx  1 codespace root       2714 Apr 27 12:34 script.sh
+
+Result 3:
+total 76
+-rw-rw-rw-  1 codespace root      34523 Apr 27 12:08 LICENSE
+-rw-rw-rw-  1 codespace root         70 Apr 27 12:08 README.md
+-rw-rw-rw-  1 codespace root          5 Apr 27 12:08 _protegido
+-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:32 archivo1
+-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:35 archivo2
+drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:32 directorio1
+drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:35 directorio2
+-rw-rw-rw-  1 codespace root       1713 Apr 27 12:08 ejercicio1.sh
+-rw-rw-rw-  1 codespace root        603 Apr 27 12:08 ejercicio2.sh
+-rw-rw-rw-  1 codespace root         45 Apr 27 12:08 hola.sh
+drwxrwxrwx+ 2 codespace codespace  4096 Apr 27 12:41 privado
+-rwxrwxrwx  1 codespace root       4271 Apr 27 12:40 script.sh
+-rw-rw-rw-  1 codespace codespace     0 Apr 27 12:41 secreto.txt
+
+Result 4:
+total 76
+-rw-rw-rw- 1 codespace root      34523 Apr 27 12:08 LICENSE
+-rw-rw-rw- 1 codespace root         70 Apr 27 12:08 README.md
+-rw-rw-rw- 1 codespace root          5 Apr 27 12:08 _protegido
+-rw-rw-rw- 1 codespace codespace     0 Apr 27 12:32 archivo1
+-rw-rw-rw- 1 codespace codespace     0 Apr 27 12:35 archivo2
+drwxrwxrwx 2 codespace codespace  4096 Apr 27 12:32 directorio1
+drwxrwxrwx 2 codespace codespace  4096 Apr 27 12:35 directorio2
+-rw-rw-rw- 1 codespace root       1713 Apr 27 12:08 ejercicio1.sh
+-rw-rw-rw- 1 codespace root        603 Apr 27 12:08 ejercicio2.sh
+-rw-rw-rw- 1 codespace root         45 Apr 27 12:08 hola.sh
+drwxrwxrwx 2 codespace codespace  4096 Apr 27 12:41 privado
+-rwxrwxrwx 1 codespace root       5170 Apr 27 12:43 script.sh
+-rw-rw-rw- 1 codespace codespace     0 Apr 27 12:48 secreto.txt
