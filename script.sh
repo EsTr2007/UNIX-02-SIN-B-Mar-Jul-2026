@@ -125,3 +125,8 @@ newgrp grupo_test: #Switches the user's current primary group to "grupo_test" fo
 sudo su: #Switches the user to the root account (Superuser) to execute commands with full system access.
 sudo chown luna:grupo_test mi_archivo: #Changes both the owner (to "luna") and the group (to "grupo_test") of the file simultaneously.
 ls -l mi_archivo: #Displays the file's details to verify the new owner and group settings
+sudo usermod -aG grupo_test $USER #Help when need password
+mkdir -p proyecto/sub: #Creates the directory "proyecto" and the subdirectory "sub" at once.
+touch proyecto/readme proyecto/sub/datos: #Creates two empty files in their respective folders.
+sudo chown -R luna:grupo_test proyecto: #Recursively changes the owner and group for the folder and everything inside it.
+ls -lR proyecto: #Lists all files and subdirectories within "proyecto" with detailed permissions.
