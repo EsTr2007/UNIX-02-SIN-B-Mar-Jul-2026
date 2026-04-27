@@ -103,3 +103,15 @@ drwxrwxrwx 2 codespace codespace  4096 Apr 27 12:35 directorio2
 drwxrwxrwx 2 codespace codespace  4096 Apr 27 12:41 privado
 -rwxrwxrwx 1 codespace root       5170 Apr 27 12:43 script.sh
 -rw-rw-rw- 1 codespace codespace     0 Apr 27 12:48 secreto.txt
+
+umask 022: #Sets default permissions for new files (Owner: all; Group/Others: read/execute).
+whoami: #Displays the username of the current user.
+echo "Hola" > mi_archivo: #Creates (or overwrites) a file with the text "Hola".
+ls -l mi_archivo: #Shows detailed information (permissions, owner, size) of the file.
+sudo useradd -m -s /usr/bin/zsh luna: #Creates user "luna" with a home directory and Zsh shell.
+sudo chown luna mi_archivo: #Changes the owner of the file to the user "luna".
+ls -l mi_archivo: #Shows detailed information (permissions, owner, size) of the file.
+
+groups:
+groupadd grupo_test:
+groups: 
