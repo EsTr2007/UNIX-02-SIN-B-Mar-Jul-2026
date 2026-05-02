@@ -28,12 +28,12 @@ ls -l hello.sh: #
 ./hello.sh: #
 chmod u+x hello.sh: #
 sudo chown root hello.sh: #
-cat animals.txt: #
-cat alpha.txt: #
-head alpha.txt: #
-tail alpha.txt: #
-head -n 5 alpha.txt: #
-tail -n 5 alpha.txt: #
-cp /etc/passwd .: #
+cat animals.txt: #Displays the entire content of the file.
+cat alpha.txt: #Displays the entire content of the file.
+head alpha.txt: #Shows the first 10 lines of a file.
+tail alpha.txt: #Shows the last 10 lines of a file.
+head -n 5 alpha.txt: #Shows the first 5 lines.
+tail -n 5 alpha.txt: #Shows the last 5 lines.
+cp /etc/passwd .: #Copies the file to the current directory.
 dd if=/dev/zero of=/tmp/swapex bs=1M count=50: #
 dd if=/dev/sda of=/dev/sdb: #
