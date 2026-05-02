@@ -25,9 +25,9 @@ sudo -u: #
 sudo sl: #
 cd ~/Documents: #Goes to "Documents" inside my Home.
 ls -l hello.sh: #
-./hello.sh: #
-chmod u+x hello.sh: #
-sudo chown root hello.sh: #
+./hello.sh: #Runs a script in the current directory.
+chmod u+x hello.sh: #Grants execution permission to the owner.
+sudo chown root hello.sh: #Changes the file owner to "root".
 cat animals.txt: #Displays the entire content of the file.
 cat alpha.txt: #Displays the entire content of the file.
 head alpha.txt: #Shows the first 10 lines of a file.
