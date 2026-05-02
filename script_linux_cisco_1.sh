@@ -1,9 +1,9 @@
 ls: #Lists files and directories.
-ls Documents: #
+ls Documents: #Lists contents of the Documents folder.
 aptitude moo: #
-ls -l: #
-ls -r: #
-ls -rl: #
+ls -l: #Long format (permissions, size, date).
+ls -r: #Lists in reverse order.
+ls -rl: #Long format in reverse order.
 aptitude -v moo: #
 aptitude -vv moo: #
 pwd: #Prints the path of the current directory.
