@@ -7,12 +7,12 @@ ls -rl: #
 aptitude -v moo: #
 aptitude -vv moo: #
 pwd: #Prints the path of the current directory.
-cd Documents: #
-cd /: #
-cd /home/sysadmin: #
-cd School/Art: #
-cd ..: #
-cd ~: #
+cd Documents: #Changes directory to "Documents".
+cd /: #Moves to the root directory of the system.
+cd /home/sysadmin: #Changes to a specific absolute path.
+cd School/Art: #Navigates to a specific subfolder.
+cd ..: #Moves up one level to the parent directory.
+cd ~: #Returns to my home directory.
 ls -1 /var/log/: #
 ls -lt /var/log: #
 ls -l -S /var/log: #
@@ -23,7 +23,7 @@ exit: #
 sl: #
 sudo -u: #
 sudo sl: #
-cd ~/Documents: #
+cd ~/Documents: #Goes to "Documents" inside my Home.
 ls -l hello.sh: #
 ./hello.sh: #
 chmod u+x hello.sh: #
