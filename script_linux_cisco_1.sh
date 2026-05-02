@@ -1,4 +1,4 @@
-ls: #Prints the path of the current directory.
+ls: #Lists files and directories.
 ls Documents: #
 aptitude moo: #
 ls -l: #
@@ -6,7 +6,7 @@ ls -r: #
 ls -rl: #
 aptitude -v moo: #
 aptitude -vv moo: #
-pwd: #
+pwd: #Prints the path of the current directory.
 cd Documents: #
 cd /: #
 cd /home/sysadmin: #
