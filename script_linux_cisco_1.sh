@@ -18,11 +18,11 @@ ls -lt /var/log: #Sorts by time (newest first).
 ls -l -S /var/log: #Sorts by file size (largest first).
 ls -lSr /var/log: #Sorts by size in reverse (smallest first).
 ls -r /var/log: #Lists log contents in reverse order.
-su -: #
-exit: #
-sl: #
-sudo -u: #
-sudo sl: #
+su -: #Switches to the root user.
+exit: #Closes the session or terminal.
+sl: #Steam Locomotive animation (joke)
+sudo -u: #Runs a command as another user.
+sudo sl: #Runs the "sl" joke with sudo.
 cd ~/Documents: #Goes to "Documents" inside my Home.
 ls -l hello.sh: #
 ./hello.sh: #Runs a script in the current directory.
