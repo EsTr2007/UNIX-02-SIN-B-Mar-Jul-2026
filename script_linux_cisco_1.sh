@@ -13,11 +13,11 @@ cd /home/sysadmin: #Changes to a specific absolute path.
 cd School/Art: #Navigates to a specific subfolder.
 cd ..: #Moves up one level to the parent directory.
 cd ~: #Returns to my home directory.
-ls -1 /var/log/: #
-ls -lt /var/log: #
-ls -l -S /var/log: #
-ls -lSr /var/log: #
-ls -r /var/log: #
+ls -1 /var/log/: #Lists one file per line.
+ls -lt /var/log: #Sorts by time (newest first).
+ls -l -S /var/log: #Sorts by file size (largest first).
+ls -lSr /var/log: #Sorts by size in reverse (smallest first).
+ls -r /var/log: #Lists log contents in reverse order.
 su -: #
 exit: #
 sl: #
