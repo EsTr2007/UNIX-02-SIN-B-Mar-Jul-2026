@@ -8,3 +8,5 @@ id -g= #Group ID principal
 id -G= #Show others groups 
 cat /etc/group|grep root= #Searches for the "root" group's details
 cat /etc/gshadow= #Displays the secure, encrypted passwords and administrators for those groups.
+mkdir ~/proyecto_unix/= #Creates a new directory named "proyecto_unix" in your home folder
+ls -la ~/proyecto_unix/= #Lists all its contents (including hidden files) in a detailed long-format list.
