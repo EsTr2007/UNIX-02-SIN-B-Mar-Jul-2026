@@ -97,7 +97,7 @@
             // Codespace (no tocan la configuración personal del estudiante).
             "settings": {
                 // Cuando abras una terminal nueva, que sea Bash por
-                // defecto (no zsh, no sh).
+                // defecto (no bash, no sh).
                 "terminal.integrated.defaultProfile.linux": "bash",
                 // Final de línea estilo UNIX (\n) en vez de Windows
                 // (\r\n). ESTO ES CRÍTICO: los scripts shell FALLAN
