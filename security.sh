@@ -86,3 +86,8 @@ ls -la ~/lab_chgrp/reportes/
 #Change the group of a file
 chgrp desarrolladores ~/lab_chgrp/proyectos/app.py
 ls -la ~/lab_chgrp/proyectos/
+#Change the group of multiple files at once
+chgrp diseno ~/lab_chgrp/proyectos/config.json ~/lab_chgrp/reportes/informe.txt
+#Verify changes in both directories
+ls -la ~/lab_chgrp/proyectos/
+ls -la ~/lab_chgrp/reportes/
