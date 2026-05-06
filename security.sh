@@ -73,3 +73,16 @@ id root #He lost all the other groups
 # Restore
 usermod -aG diseno,marketing,grupo_temporal root
 id root #Restored
+#Prepare the practice scenario
+mkdir -p ~/lab_chgrp/{proyectos,reportes,scripts}
+touch ~/lab_chgrp/proyectos/app.py
+touch ~/lab_chgrp/proyectos/config.json
+touch ~/lab_chgrp/reportes/informe.txt
+touch ~/lab_chgrp/scripts/deploy.sh
+ls /root
+#View initial state — everyone has the user's group
+ls -la ~/lab_chgrp/proyectos/
+ls -la ~/lab_chgrp/reportes/
+#Change the group of a file
+chgrp desarrolladores ~/lab_chgrp/proyectos/app.py
+ls -la ~/lab_chgrp/proyectos/
