@@ -62,3 +62,11 @@ adduser root marketing
 # View current status
 id root
 grep root /etc/group
+# Create a temporary group for the demo
+groupadd grupo_temporal
+usermod -aG grupo_temporal root
+id root #has temporary_group
+# Now the ERROR: usermod without -a
+usermod -G desarrolladores root
+#This removes all child groups except for developers.
+id root #He lost all the other groups
