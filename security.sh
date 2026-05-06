@@ -37,3 +37,12 @@ addgroup --gid 2100 marketing
 addgroup --system cache_web
 #addgroup --gid 2100 marketing Verify
 grep "diseno\|marketing\|cache_web" /etc/group
+# See which groups the current user belongs to
+groups
+id
+# Add user to a group with usermod (low level)
+usermod -aG desarrolladores $USER
+usermod -aG diseno $USER
+#The solution is to change $USER (because it's empty) to root
+usermod -aG desarrolladores root
+usermod -aG diseno root
