@@ -46,3 +46,19 @@ usermod -aG diseno $USER
 #The solution is to change $USER (because it's empty) to root
 usermod -aG desarrolladores root
 usermod -aG diseno root
+#CRITICAL: The -a (append) flag is essential.
+Without -a, usermod REPLACES all user groups.
+With -a, it ADDS the user to the group while preserving existing ones.
+# CRITICAL: The -a (append) flag is essential.
+Without -a, usermod REPLACES all user groups.
+With -a, it ADDS the user to the group while preserving existing ones.
+#CRITICAL: The -a (append) flag is essential.
+#Without -a, usermod REPLACES all user groups.
+#With -a, it ADDS the user to the group while preserving existing ones.
+#Verify changes in /etc/group
+grep "desarrolladores\|diseno" /etc/group
+# Add user to group with adduser (high level, Debian)
+adduser root marketing
+# View current status
+id root
+grep root /etc/group
