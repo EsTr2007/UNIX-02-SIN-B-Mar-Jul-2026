@@ -10,3 +10,10 @@ cat /etc/group|grep root= #Searches for the "root" group's details
 cat /etc/gshadow= #Displays the secure, encrypted passwords and administrators for those groups.
 mkdir ~/proyecto_unix/= #Creates a new directory named "proyecto_unix" in your home folder
 ls -la ~/proyecto_unix/= #Lists all its contents (including hidden files) in a detailed long-format list.
+# groupadd [options] group_name
+# Create a simple group
+sudo groupadd desarrolladores
+sudo groupadd -g 2000 operaciones
+#Specific GID
+#system group (GID < 1000)
+sudo groupadd --system servicios_web
