@@ -35,3 +35,11 @@ echo "Nuevo grupo activo: $(id -gn)" # Prints the confirmation message with the 
 sudo -E setpriv --reuid=vscode --regid=1001 --init-groups /bin/bash # Opens a new clean shell session forcing the 'desarrolladores' group ID
 # Verify that the active group changed
 id -gn # Displays the current active primary group name
+
+#Create a file inside the subshell
+touch ~/dentro_de_newgrp.txt
+ls -la ~/dentro_de_newgrp.txt
+# The group is now 'desarrolladores'
+# Create a directory
+mkdir -p ~/proyecto_dev/src
+ls -la ~/
