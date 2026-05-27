@@ -60,3 +60,8 @@ newgrp desarrolladores
 sudo -E setpriv --reuid=vscode --regid=1001 --init-groups
 echo "PID dentro de newgrp: $$"
 #The PID is different - it's a child process
+
+#Create a password-protected group
+sudo groupadd grupo_restringido
+sudo gpasswd grupo_restringido
+#The system will ask for a password for the group
