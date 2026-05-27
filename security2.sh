@@ -53,3 +53,10 @@ echo "Grupo restaurado: $(id -gn)"
 
 #Compare the two files
 ls -la ~/antes_de_newgrp.txt ~/dentro_de_newgrp.txt
+
+#newgrp creates a subshell — this is demonstrable 
+echo "PID del shell actual: $$"
+newgrp desarrolladores
+sudo -E setpriv --reuid=vscode --regid=1001 --init-groups
+echo "PID dentro de newgrp: $$"
+#The PID is different - it's a child process
