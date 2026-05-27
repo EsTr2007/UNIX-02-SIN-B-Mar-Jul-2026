@@ -65,3 +65,11 @@ echo "PID dentro de newgrp: $$"
 sudo groupadd grupo_restringido
 sudo gpasswd grupo_restringido
 #The system will ask for a password for the group
+
+#A user who does NOT belong to the group canunirse temporalmente si conoce la contraseña 
+newgrp grupo_restringido
+sudo -E setpriv --reuid=vscode --regid=grupo_restringido --init-groups
+#The system will ask for the group password.
+#If the password is correct, it temporarily binds 
+id - gn
+exit #Upon leaving, you lose your temporary membership.
