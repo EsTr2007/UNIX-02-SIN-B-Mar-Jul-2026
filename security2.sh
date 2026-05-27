@@ -12,3 +12,26 @@ echo "Grupo actual: $(id -gn)"
 #Create a file before newgrp
 touch ~/antes_de_newgrp.txt
 ls -la ~/antes_de_newgrp.txt
+
+#Switch to developers group
+newgrp desarrolladores
+#Verify that the active group changed
+id -gn
+echo "Nuevo grupo activo: $ (id -gn)"
+
+#Update the Alpine Linux package list and install the util-linux package with basic system tools.
+sudo apk update && sudo apk add util-linux
+
+# Create the new group in Alpine Linux
+sudo addgroup desarrolladores # Creates a new system group named 'desarrolladores'
+# Add the current user to the group
+sudo adduser vscode desarrolladores # Adds the 'vscode' user to the 'desarrolladores' group
+# Start a clean bash session preserving the environment using short flags
+sudo -E setpriv --reuid=vscode --regid=1001 --init-groups /bin/bash # Spawns a bash shell with the new group ID while preserving the correct user HOME directory using the -E flag
+# Verify that the active group changed
+id -gn # Displays the current active primary group name
+echo "Nuevo grupo activo: $(id -gn)" # Prints the confirmation message with the current group name
+# Start a clean bash session forcing the desarrolladores group ID
+sudo -E setpriv --reuid=vscode --regid=1001 --init-groups /bin/bash # Opens a new clean shell session forcing the 'desarrolladores' group ID
+# Verify that the active group changed
+id -gn # Displays the current active primary group name
