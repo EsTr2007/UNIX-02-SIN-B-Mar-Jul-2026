@@ -8,3 +8,6 @@ echo "${IP_ADDRESSES[*]}"
 echo "${IP_ADDRESSES[0]}"
 
 chmod 777 array.sh
+
+unset IP_ADDRESSES[1]
+echo "${IP_ADDRESSES[*]}"
