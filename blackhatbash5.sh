@@ -23,3 +23,10 @@ cat > stdout.txt 2> stderr.txt
 
 lzl 2> error.txt
 cat error.txt
+
+cat <archivo.txt
+
+cat << EOF
+ Black Hat Bash
+ by No Starch Press
+EOF
