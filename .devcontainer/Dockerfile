@@ -216,6 +216,7 @@ SHELL ["/bin/bash", "-c"]
 # Codespaces siempre monta el código del repositorio en
 # /workspaces/<nombre-del-repo>. Establecer /workspaces aquí hace que las
 # terminales se abran cerca de nuestros archivos del curso.
+# Sets the default folder when opening the container terminal.
 WORKDIR /workspaces
 
 # Configuración de Git para el contenedor:
