@@ -54,6 +54,9 @@ FROM kalilinux/kali-rolling:latest
 #
 # La barra invertida "\" al final de cada línea significa "esto continúa
 # en la línea siguiente". Solo es para legibilidad.
+# ENV sets variables the whole container can read, BHB Ch.1 (env vars).
+# DEBIAN_FRONTEND: stops apt from asking questions during install.
+# LANG/LC_ALL: sets Spanish UTF-8 encoding. TERM: enables 256 colors.
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=es_ES.UTF-8 \
     LC_ALL=es_ES.UTF-8 \
