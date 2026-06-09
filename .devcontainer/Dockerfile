@@ -186,6 +186,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  # --- Después de instalar, activamos el idioma español ---
  # sed busca "# es_ES.UTF-8" en /etc/locale.gen y le quita el "#" para
  # activar esa línea. Luego locale-gen compila los archivos de idioma.
+ # sed -i edits the locale file in-place to enable Spanish, BHB Ch.2.
  && sed -i 's/# es_ES.UTF-8/es_ES.UTF-8/' /etc/locale.gen \
  && locale-gen \
  \
