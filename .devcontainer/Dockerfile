@@ -257,6 +257,8 @@ __set_prompt() {
 }
 PROMPT_COMMAND=__set_prompt
 EOF
+# CMD runs at container start, not at build time like RUN.
+# Launches zsh as the default shell when the Codespace opens.
 CMD ["/bin/zsh"]
 
 
