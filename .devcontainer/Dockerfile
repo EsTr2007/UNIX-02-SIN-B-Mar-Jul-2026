@@ -70,6 +70,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
 # normales (no-root) deben poder capturar paquetes. Como en el contenedor
 # siempre somos root, respondemos "false" POR ADELANTADO usando
 # debconf-set-selections para que no detenga el build esperando input.
+# The pipeline (|) sends echo's output as input to debconf-set-selections,
+# pre-answering Wireshark's install question, BHB Ch.1 (pipes).
 RUN echo "wireshark-common wireshark-common/install-setuid boolean false" \
     | debconf-set-selections
 
