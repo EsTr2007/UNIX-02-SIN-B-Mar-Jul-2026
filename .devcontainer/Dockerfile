@@ -240,6 +240,8 @@ RUN git config --system --add safe.directory '*' \
 # propia terminal integrada de VS Code, pero es buena práctica dejarla
 # definida para que la imagen sea usable también con Docker puro.
 # Prompt del curso para bash
+# <<'EOF' is a heredoc: sends multiple lines as input to a command, BHB Ch.1.
+# Adds a custom prompt showing current folder and last command's exit code $?, BHB Ch.1.
 RUN cat >> /root/.zshrc <<'EOF'
 
 # ===== Prompt del curso =====
