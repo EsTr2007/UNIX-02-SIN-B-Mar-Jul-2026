@@ -94,6 +94,10 @@ RUN echo "wireshark-common wireshark-common/install-setuid boolean false" \
 # El "&&" encadena comandos: ejecuta el siguiente SOLO SI el anterior
 # terminó bien. Si algo falla, el build se detiene con error (que es lo
 # que queremos: mejor un error claro que una imagen rota).
+# && only runs the next command if the previous worked, BHB Ch.1.
+# One big RUN = one layer, smaller image, BHB Ch.3.
+# -y skips confirmations, --no-install-recommends avoids extra packages.
+# grep/sed/gawk for text processing, BHB Ch.2. nmap, tcpdump, tor for hacking tools.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     \
     # === Editores de texto y shells (intérpretes de comandos) ===
