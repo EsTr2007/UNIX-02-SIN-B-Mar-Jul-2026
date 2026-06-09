@@ -1,4 +1,7 @@
 # ============================================================================
+# Docker reads this file top to bottom and each instruction creates a layer.
+# If an early line hasn't changed, Docker reuses its cached layer and skips
+# rebuilding it so order matters: stable things go first, BHB Ch.3.
 #  Dockerfile — "receta" para construir la imagen del curso
 # ============================================================================
 #  Un Dockerfile es un archivo de texto con instrucciones paso a paso que
