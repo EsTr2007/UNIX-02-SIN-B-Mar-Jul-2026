@@ -23,6 +23,9 @@
 # En lugar de partir de cero, partimos de la imagen oficial de Kali Linux
 # en su versión "rolling" (actualización continua, siempre al día).
 # Todo lo que instalemos más abajo se apila ENCIMA de esta base.
+# A base image is a starting point instead of building Linux from zero,
+# we grab Kali already assembled. Every instruction below adds on top of it.
+# Kali is chosen because it comes ready for security o hacking work, BHB Ch.3.
 FROM kalilinux/kali-rolling:latest
 
 
