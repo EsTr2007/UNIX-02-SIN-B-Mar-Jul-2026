@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Nota= Los primeros scripts están fuera del horario ya que yo por motivos personales tuve que salir de la ciudad y llegue el mismo lunes pero en la noche, entonces ahí me puse a igualarme con los hecho en el día
+
 ##############################################################################
 # SCRIPT: evaluate_blackhatbash.sh
 # PROPÓSITO: Calificar la rama 'blackhatbash' del repositorio UNIX-02-SIN-B
@@ -461,7 +463,7 @@ generate_html_report() {
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 Evaluación de Rama: blackhatbash</h1>
+            <h1> Evaluación de Rama: blackhatbash</h1>
             <p>Rúbrica completa de análisis de commits y código</p>
         </div>
         <div class="final-score">
@@ -659,3 +661,4 @@ run_evaluation() {
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     run_evaluation "$@"
 fi
+
