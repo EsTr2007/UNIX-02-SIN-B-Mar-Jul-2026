@@ -21,6 +21,7 @@ set -euo pipefail
 # ============================================================================
 # COLORES PARA SALIDA EN TERMINAL
 # ============================================================================
+#Assigning variables with ANSI escape codes allows printing text in colors on the terminal (Red, Green, Yellow, etc.). NC resets the color to the default.
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -32,10 +33,15 @@ NC='\033[0m' # No Color
 # ============================================================================
 # CONFIGURACIÓN
 # ============================================================================
+#Captures the first argument passed to the script $1. If nothing is passed, it uses the current directory by default. using the expansion ${var:-default}
 REPO_PATH="${1:-.}"
+#Capture the second argument $2 (branch name). If empty, it defaults to blackhatbash.
 BRANCH_NAME="${2:-blackhatbash}"
+#Defines a temporary folder path. $$ is a special Bash variable that introduces the ID of the current process to prevent duplicate names.
 TEMP_DIR="/tmp/blackhatbash_eval_$$"
+#Define la carpeta donde se guardarán los informes finales.
 REPORT_DIR="./blackhatbash_reports"
+#Save the current date and time in YearMonthDay_HourMinuteSecond format to name files uniquely.
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
 # Rutas de salida
