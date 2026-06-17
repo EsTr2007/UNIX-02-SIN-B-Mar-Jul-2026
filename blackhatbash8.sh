@@ -53,3 +53,11 @@ ps -ef | grep sleep
 jobs
 #[1]+  Hecho                      sleep 100
 
+fg %1
+#sleep 100
+
+CTRL -z
+#[1]+  Detenido                   sleep 100
+
+bg %1
+#[1]+ sleep 100 &
