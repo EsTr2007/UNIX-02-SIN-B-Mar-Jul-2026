@@ -45,15 +45,18 @@ REPORT_DIR="./blackhatbash_reports"
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
 # Rutas de salida
+#Define the full paths and names of the final JSON and HTML files.
 JSON_REPORT="${REPORT_DIR}/rubrica_${TIMESTAMP}.json"
 HTML_REPORT="${REPORT_DIR}/rubrica_${TIMESTAMP}.html"
 
 # Configuración de zonas horarias (Ecuador: UTC-5)
+#Configure the time zone to use (UTC-5 Ecuador) to correctly evaluate the times of your commits.
 ECUADOR_TZ="America/Guayaquil"
 
 # ============================================================================
 # FUNCIONES AUXILIARES
 # ============================================================================
+#Prints a colorful header in Cyan using the first argument passed to the function ($1). The -e flag allows for color interpretation.
 
 log_header() {
     echo -e "\n${CYAN}========================================${NC}"

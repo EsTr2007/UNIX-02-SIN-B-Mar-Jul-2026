@@ -60,4 +60,7 @@ CTRL -z
 #[1]+  Detenido                   sleep 100
 
 bg %1
-#[1]+ sleep 100 &
+# [1]+ sleep 100 &
+
+nohup ./exercise2.sh &
+#nohup: se descarta la entrada y se añade la salida a 'nohup.out'
