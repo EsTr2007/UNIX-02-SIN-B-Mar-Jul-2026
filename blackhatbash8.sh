@@ -20,3 +20,5 @@ sed 's/Mozilla/Godzilla/g' log.txt
 sed 's/Mozilla/Godzilla/g' log.txt > newlog.txt
 
 cat newlog.txt | grep "Gozilla" #Calls for the file, filters the output and searchs for the word "Godzilla" 
+
+sed 's/ //g' log.txt > newlog1.txt
