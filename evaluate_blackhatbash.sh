@@ -2,16 +2,20 @@
 
 #Nota= Los primeros scripts están fuera del horario ya que yo por motivos personales tuve que salir de la ciudad y llegue el mismo lunes pero en la noche, entonces ahí me puse a igualarme con los hecho en el día
 
+#Informative comments block about the script, its creator, version, and an example of its use in the terminal.
 ##############################################################################
 # SCRIPT: evaluate_blackhatbash.sh
 # PROPÓSITO: Calificar la rama 'blackhatbash' del repositorio UNIX-02-SIN-B
-# AUTOR: Santiago (Snto666)
+# AUTOR: Esteban (EsTr2007)
 # FECHA: 2026
 #
 # USO: ./evaluate_blackhatbash.sh [ruta_al_repo] [rama]
 # EJEMPLO: ./evaluate_blackhatbash.sh ~/UNIX-02-SIN-B-Mar-Jul-2026 blackhatbash
 ##############################################################################
 
+#-e: The script stops immediately if a command fails.
+#-u: The script fails if it attempts to use an undefined variable.
+#o pipefail: If a command within a pipe (|) fails, the entire pipe fails.
 set -euo pipefail
 
 # ============================================================================
