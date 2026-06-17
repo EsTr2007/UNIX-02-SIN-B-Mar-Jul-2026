@@ -64,6 +64,7 @@ log_header() {
     echo -e "${CYAN}========================================${NC}\n"
 }
 
+#Short functions to print standardized logs with icons and colors for information, success, warnings and errors.
 log_info() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }
@@ -83,6 +84,7 @@ log_error() {
 # ============================================================================
 # VALIDACIÓN INICIAL
 # ============================================================================
+#Check if the given path contains a hidden .git folder. If it does not exist, throw an error and abort the script with exit 1.
 
 validate_repo() {
     if [ ! -d "$REPO_PATH/.git" ]; then
@@ -92,6 +94,7 @@ validate_repo() {
     log_success "Repositorio Git validado en: $REPO_PATH"
 }
 
+#Go to the repository and check with `git rev-parse` if the branch exists. If it doesn't exist, list the available branches (using `sed` to indent them) and exit with an error.
 validate_branch() {
     cd "$REPO_PATH"
     if ! git rev-parse --verify "$BRANCH_NAME" &>/dev/null; then
@@ -106,6 +109,7 @@ validate_branch() {
 # ============================================================================
 # RECOLECCIÓN DE DATOS DE COMMITS
 # ============================================================================
+#Extracts the Git history in two different formats (one delimited by horizontal bars | and the other structured with line breaks and ---END--- indicators) and saves them to text files in the temporary folder. The || true command prevents the script from failing (set -e) if the commands return no results.
 
 get_commit_data() {
     cd "$REPO_PATH"
@@ -120,6 +124,7 @@ get_commit_data() {
 # ============================================================================
 # MÉTRICAS DE EVALUACIÓN (CÁLCULOS INTERNOS)
 # ============================================================================
+#It counts the total commits. Using a while loop, it checks each hash. It awards points (good_messages++) if the message starts with a capital letter and is between 10 and 100 characters long, or if it follows the Conventional Commits standard (feat:, fix:, etc.). Finally, it calculates a mathematical average out of 100.
 
 calculate_commit_quality() {
     local score=0
@@ -154,6 +159,8 @@ calculate_commit_quality() {
     echo "$score"
 }
 
+#Gets the date/time with the Ecuador time zone. Evaluates whether the commit was made during work/class hours (from 07:00 to 16:59). Adds to in_hours (within hours) or out_hours (outside hours) and returns a formatted string with the results separated by slashes |.
+
 calculate_time_score() {
     local in_hours=0
     local out_hours=0
@@ -178,6 +185,11 @@ calculate_time_score() {
     fi
     echo "$score|$in_hours|$out_hours"
 }
+
+#Excellent: Includes a description body, more than 15 words, and key verbs (add, fix, update, etc.).
+#Good: More than 10 words.
+#Poor: Fewer than 10 words.
+#Applies a weighted formula to calculate a grade.
 
 calculate_message_quality() {
     local excellent=0
@@ -214,6 +226,7 @@ calculate_message_quality() {
     echo "$score|$excellent|$good|$poor|$total"
 }
 
+#Find the first and last commits in history, calculate the difference in seconds (Epoch), and convert it to days (/86400). If you average between 1 and 3 commits per day, you get 90 points; if it's too high, you get a small penalty; and if it's 0, you get 50 points.
 calculate_consistency() {
     local score=0
     local first_commit_time=""
@@ -259,23 +272,33 @@ calculate_consistency() {
     echo "$score|$total_commits|$days_span|${commits_per_day:-0}"
 }
 
+#Declare the local variables that the function will use to avoid conflicts with global variables in the script.
 calculate_change_coverage() {
     local score=0
     local files_modified=0
     local avg_files_per_commit=0
     local total_commits=0
     
+    #It navigates to the repository and counts the total number of commits on the branch using `git rev-list --count`. If it fails, it assigns 0.
     cd "$REPO_PATH"
     total_commits=$(git rev-list --count "$BRANCH_NAME" 2>/dev/null || echo "0")
     
+    #If there are no commits, print a string with zeros separated by pipes (0|0|0) and exit the function immediately to avoid division by zero later.
     if [ "$total_commits" -eq 0 ]; then
         echo "0|0|0"
         return
     fi
     
+    #Gets the list of filenames modified in the last commit (RAMA^ means the parent commit of the last commit in the branch) and counts them line by line with wc -l.
     files_modified=$(git diff --name-only "$BRANCH_NAME"^.."$BRANCH_NAME" 2>/dev/null | wc -l)
+    #Perform an integer division in Bash to obtain the average number of files modified per commit.
     avg_files_per_commit=$((files_modified / total_commits))
     
+    #If the average is between 2 and 5 files per commit (ideal in development): 95 points.
+#If it's exactly 1 file per commit: 80 points.
+#If it's more than 5, apply a penalty by subtracting 5 points for each extra file, guaranteeing a minimum of 40 points.
+#In any other case, award 50 points.
+ 
     if [ "$avg_files_per_commit" -ge 2 ] && [ "$avg_files_per_commit" -le 5 ]; then
         score=95
     elif [ "$avg_files_per_commit" -ge 1 ] && [ "$avg_files_per_commit" -lt 2 ]; then
@@ -286,9 +309,11 @@ calculate_change_coverage() {
     else
         score=50
     fi
+    #Returns the calculated results concatenated with pipes.
     echo "$score|$files_modified|$avg_files_per_commit"
 }
 
+#Initializes variables, counts total commits, and prevents divide-by-zero errors if the branch is empty.
 calculate_commit_size() {
     local score=0
     local total_lines=0
@@ -303,16 +328,26 @@ calculate_commit_size() {
         return
     fi
     
+    #Show for each file how many lines were added (column 1) and how many were deleted (column 2).
+    #Add up all the first and second columns of the output and, at the end of the file (END), print the total sum of affected lines (added + deleted).
     stats=$(git log "$BRANCH_NAME" --numstat --pretty="" 2>/dev/null | awk '{added+=$1; deleted+=$2} END {print added+deleted}')
     
+    #Check if the stats variable returned empty or zero; if so, safely assign 0 to total_lines
     if [ -z "$stats" ] || [ "$stats" -eq 0 ]; then
         total_lines=0
     else
         total_lines=$stats
     fi
     
+    #Calculate the average number of lines modified per commit using integer division.
     avg_lines=$((total_lines / total_commits))
     
+    #Between 50 and 200 lines (healthy commit size): 95 points.
+#Small changes (20 to 49 lines): 80 points.
+#Medium-to-large changes (201 to 499 lines): 70 points.
+#Massive commits (>= 500 lines): Penalized by subtracting 1 point for every 100 lines, with a minimum score of 30 points.
+#If it is less than 20 lines: 40 points.
+ 
     if [ "$avg_lines" -ge 50 ] && [ "$avg_lines" -le 200 ]; then
         score=95
     elif [ "$avg_lines" -ge 20 ] && [ "$avg_lines" -lt 50 ]; then
@@ -328,6 +363,7 @@ calculate_commit_size() {
     echo "$score|$total_lines|$avg_lines"
 }
 
+#Start with a perfect score (100) and count the commits.
 calculate_merge_cleanliness() {
     local score=100
     local merge_commits=0
@@ -335,8 +371,10 @@ calculate_merge_cleanliness() {
     
     cd "$REPO_PATH"
     total_commits=$(git rev-list --count "$BRANCH_NAME" 2>/dev/null || echo "1")
+    #Use `git rev-list` combined with `--grep="Merge"` to filter and count how many commits contain the word "Merge" in their title
     merge_commits=$(git rev-list "$BRANCH_NAME" --grep="Merge" 2>/dev/null | wc -l)
     
+    #If it finds Merge commits, it applies a drastic penalty of 10 points for each one. The script ensures that the minimum score for this is no lower than 50 points.
     if [ "$merge_commits" -gt 0 ]; then
         penalty=$((merge_commits * 10))
         score=$((100 - penalty))
@@ -345,6 +383,7 @@ calculate_merge_cleanliness() {
     echo "$score|$merge_commits|$total_commits"
 }
 
+#Initialize the counters for each type of irregular schedule to zero and the initial score to 100.
 calculate_out_of_hours() {
     local late_night=0
     local weekend=0
@@ -353,18 +392,27 @@ calculate_out_of_hours() {
     local score=100
     
     cd "$REPO_PATH"
+    #Read line by line the list of commit hashes generated by git rev-list and increment the total commit counter (total++).
     while IFS= read -r commit_hash; do
         [ -z "$commit_hash" ] && continue
         ((total++))
+        #Extracts the ISO 8601 date from the commit (%aI).
+#`date -d "$commit_time" +%H`: Extracts only the time (00 to 23), forcing the time zone to Ecuador.
+#`date -d "$commit_time" +%w`: Extracts the day of the week (0 = Sunday, 6 = Saturday).
         commit_time=$(git log --format=%aI -n 1 "$commit_hash" 2>/dev/null)
         hour=$(TZ="$ECUADOR_TZ" date -d "$commit_time" +%H 2>/dev/null || echo "12")
         day_of_week=$(TZ="$ECUADOR_TZ" date -d "$commit_time" +%w 2>/dev/null || echo "3")
         
+        #If the time is before 6:00 AM, increment late_night.
+#If the time is 6:00 PM or later, increment after_hours.
+#If the day is 0 (Sunday) or 6 (Saturday), increment weekend.
+#The `<` operator (Process Substitution) populates the while loop with the list of commits.
         if [ "$hour" -lt 6 ]; then ((late_night++)); fi
         if [ "$hour" -ge 18 ]; then ((after_hours++)); fi
         if [ "$day_of_week" -eq 0 ] || [ "$day_of_week" -eq 6 ]; then ((weekend++)); fi
     done < <(git rev-list "$BRANCH_NAME" 2>/dev/null)
     
+    #Add up all out-of-hours incidents and subtract 5 points for each one. Define the minimum score for this metric as 20 points.
     if [ "$total" -gt 0 ]; then
         suspicious=$((late_night + after_hours + weekend))
         score=$((100 - (suspicious * 5)))
@@ -373,13 +421,15 @@ calculate_out_of_hours() {
     echo "$score|$late_night|$after_hours|$weekend|$total"
 }
 
+#It starts with a base of 85 integrity points.
 calculate_code_integrity() {
     local score=85
     local issues=0
     
     cd "$REPO_PATH"
+    #Scan the history in short format (--oneline) using grep -icE to search in a case-insensitive (i) and counting (c) regular expression (E) way for informal keywords: "wip" (work in progress), "tmp" (temporary), "test", "debug" or "fix typo".
     problematic_patterns=$(git log "$BRANCH_NAME" --oneline 2>/dev/null | grep -icE "(wip|tmp|test|debug|fix typo)" || echo "0")
-    
+    #If you find these patterns, subtract 2 points for each match detected. The lower limit is locked at 40 points.
     if [ "$problematic_patterns" -gt 0 ]; then
         issues=$((issues + problematic_patterns))
     fi
@@ -388,6 +438,7 @@ calculate_code_integrity() {
     echo "$score|$issues"
 }
 
+#Configure internal counters to separate successful messages from unsuccessful ones.
 calculate_naming_convention() {
     local conventional=0
     local non_conventional=0
@@ -395,18 +446,20 @@ calculate_naming_convention() {
     local total=0
     
     cd "$REPO_PATH"
+    #Iterate over the commits and extract only the main subject (%s) of the commit message.
     while IFS= read -r commit_hash; do
         [ -z "$commit_hash" ] && continue
         ((total++))
         message=$(git log --format=%s -n 1 "$commit_hash" 2>/dev/null)
         
+        #Regular Expression Validation: Evaluates whether the message starts exactly with valid prefixes (feat: , fix: , docs: , etc.) followed by a required space [\ ]. If it complies, it adds to conventional; otherwise, it adds to non_conventional.
         if [[ "$message" =~ ^(feat|fix|docs|style|refactor|test|chore|ci|perf|build):[\ ] ]]; then
             ((conventional++))
         else
             ((non_conventional++))
         fi
     done < <(git rev-list "$BRANCH_NAME" 2>/dev/null)
-    
+    #Calculate the exact percentage of commits that followed the rule out of the total number of commits and return it.
     if [ "$total" -gt 0 ]; then
         score=$((conventional * 100 / total))
     fi
@@ -675,3 +728,4 @@ if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     run_evaluation "$@"
 fi
 
+sleep 500

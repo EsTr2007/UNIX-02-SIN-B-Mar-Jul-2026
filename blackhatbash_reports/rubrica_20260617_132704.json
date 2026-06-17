@@ -1,0 +1,22 @@
+{
+  "evaluacion_rubrica": {
+    "fecha": "FECHA_PLACEHOLDER",
+    "repositorio": "REPO_PLACEHOLDER",
+    "rama": "RAMA_PLACEHOLDER",
+    "usuario": "USUARIO_PLACEHOLDER",
+    "metricas": {
+      "calidad_commits": 94,
+      "horario_commits": 92,
+      "calidad_mensajes": 93,
+      "consistencia": 90,
+      "cobertura_cambios": 95,
+      "tamano_commits": 95,
+      "limpieza_merges": 100,
+      "actividad_fuera_horas": 90,
+      "integridad_codigo": 95,
+      "convencion_nombres": 94
+    },
+    "puntuacion_final": 93,
+    "calificacion": "EXCELENTE (A)"
+  }
+}
