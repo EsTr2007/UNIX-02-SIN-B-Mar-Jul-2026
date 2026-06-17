@@ -470,10 +470,13 @@ calculate_naming_convention() {
 # GENERACIÓN DE REPORTES
 # ============================================================================
 
+#Writes a static JSON report file using a heredoc; all metric scores and the final grade are hardcoded and do not reflect the actual computed values.
 generate_json_report() {
+#Receives the output file path as the first argument and writes the heredoc content directly into it.    
     local json_file="$1"
     cat > "$json_file" << 'EOJSON'
 {
+#Here, the scores for each of the 10 metrics are assigned manually and "statically".
   "evaluacion_rubrica": {
     "fecha": "FECHA_PLACEHOLDER",
     "repositorio": "REPO_PLACEHOLDER",
@@ -498,7 +501,9 @@ generate_json_report() {
 EOJSON
 }
 
+#Writes a static HTML report file using a heredoc; the displayed score (93/100) and grade are hardcoded values, not dynamically generated.
 generate_html_report() {
+#Receives the output file path as the first argument and writes the heredoc content directly into it.    
     local html_file="$1"
     cat > "$html_file" << 'EOHTML'
 <!DOCTYPE html>
@@ -550,6 +555,7 @@ EOHTML
 # FUNCIÓN PRINCIPAL DE EVALUACIÓN
 # ============================================================================
 
+#Orchestrates the full evaluation: validates the repo and branch, collects commit data, runs all metrics, computes the final weighted score, and generates both reports.
 run_evaluation() {
     log_header "EVALUADOR DE RAMA: blackhatbash"
     
@@ -559,6 +565,7 @@ run_evaluation() {
     log_info "Validando rama..."
     validate_branch
     
+#Creates the temporary working directory and the output reports directory if they do not already exist.    
     mkdir -p "$TEMP_DIR"
     mkdir -p "$REPORT_DIR"
     
@@ -570,6 +577,7 @@ run_evaluation() {
     
     # Métrica 1
     log_info "1. Calidad de commits..."
+#The calculation function is called to verify it executes without errors, but its return value is discarded; the score and detail variables are assigned manually   
     discard_score=$(calculate_commit_quality)
     quality_score=94
     log_success "Puntuación: $quality_score/100"
@@ -654,6 +662,7 @@ run_evaluation() {
     # ====================================================================
     log_header "RESULTADO FINAL"
     
+    #Computes the final weighted score by multiplying each metric score by its assigned weight percentage and dividing the total by 100.
     local final_score=$(( 
         (quality_score * 15 +
          time_score * 15 +
@@ -670,6 +679,7 @@ run_evaluation() {
     local rating="EXCELENTE (A)"
     
     # Mostrar en terminal
+    #Prints the final score and letter grade inside a colored box using ANSI escape codes and Unicode box-drawing characters.
     echo -e "\n${MAGENTA}╔════════════════════════════════════════╗${NC}"
     echo -e "${MAGENTA}║${NC}         PUNTUACIÓN FINAL: ${GREEN}$final_score/100${NC}${MAGENTA}            ║${NC}"
     echo -e "${MAGENTA}║${NC}         Calificación: ${YELLOW}$rating${NC}${MAGENTA}     ║${NC}"
@@ -680,6 +690,7 @@ run_evaluation() {
     # ====================================================================
     log_header "GENERANDO REPORTES"
     
+    #Calls both report generators passing the pre-defined output paths, then logs the resulting file locations.
     generate_json_report "$JSON_REPORT"
     log_success "Reporte JSON: $JSON_REPORT"
     
@@ -687,6 +698,7 @@ run_evaluation() {
     log_success "Reporte HTML: $HTML_REPORT"
     
     # Tabla resumen
+    #Prints a formatted summary table to the terminal showing each metric's score and weight using printf for column alignment.
     echo -e "\n${CYAN}=== RESUMEN DE PUNTUACIONES ===${NC}\n"
     printf "%-40s | %5s | %5s\n" "MÉTRICA" "SCORE" "PESO %"
     printf "%-40s |\n" "────────────────────────────────────────────────────────────"
@@ -705,6 +717,7 @@ run_evaluation() {
     echo ""
     
     # Detalles Técnicos Simulados Excelentes
+    #Prints a technical summary of key commit statistics collected during evaluation.
     log_header "DETALLES TÉCNICOS"
     echo -e "${BLUE}Commits totales:${NC} $consistency_count"
     echo -e "${BLUE}Período de desarrollo:${NC} $consistency_days días"
@@ -717,6 +730,7 @@ run_evaluation() {
     log_header "ANÁLISIS Y RECOMENDACIONES"
     log_success "¡Excelente trabajo! La rama cumple óptimamente con todos los estándares requeridos."
     
+    #Removes the temporary directory and all its contents once the evaluation is complete.
     rm -rf "$TEMP_DIR"
 }
 
@@ -724,8 +738,10 @@ run_evaluation() {
 # PUNTO DE ENTRADA
 # ============================================================================
 
+#Ensures the script only runs run_evaluation when executed directly, not when sourced by another script.
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     run_evaluation "$@"
 fi
 
+#DEBUG ONLY: pauses execution for 500 seconds — remove before production use.
 sleep 500
