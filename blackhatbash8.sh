@@ -32,3 +32,11 @@ cat newlogd.txt
 sed '$d' newlog.txt > newlogl.txt
 
 cat newlogl.txt
+
+sed '5,7d' log.txt > newlog57.txt
+
+cat newlog57.txt
+
+sed -n '2,15 p' log.txt
+
+ sed -i '1d' log.txt
